@@ -20,11 +20,14 @@ import { FormError } from '@/components/form-error';
 import { FormSuccess } from '@/components/form-success';
 import { login } from '@/actions/login';
 import Link from 'next/link';
-import { redirect, useSearchParams } from 'next/navigation';
+import { redirect, useRouter, useSearchParams } from 'next/navigation';
 import { useCurrentUser } from '@/hooks/use-current-user';
 import { currentUser } from '@/lib/auth';
+import { useSession } from 'next-auth/react';
 
 export const LoginForm = () => {
+  const router = useRouter();
+  const { update } = useSession();
   const user = useCurrentUser();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl');
@@ -44,13 +47,20 @@ export const LoginForm = () => {
     setSuccess('');
 
     startTransition(() => {
-      if (user) {
-        return setError('You are already logged in');
+      try {
+        login(values)
+          .then((data) => {
+            setError(data?.error);
+            setSuccess(data?.success);
+          })
+          .then((data) => {
+            if (success) {
+              update();
+            }
+          });
+      } catch (error) {
+        setError('Something went wrong');
       }
-      login(values).then((data) => {
-        setError(data?.error);
-        setSuccess(data?.success);
-      });
     });
   };
 
@@ -59,7 +69,7 @@ export const LoginForm = () => {
       headerLabel="Welcome Back"
       backButtonLabel="Don't have an Account"
       backButtonHref="/auth/register"
-      showSocial
+      showSocial={false}
     >
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
