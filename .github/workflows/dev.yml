@@ -27,5 +27,5 @@ jobs:
 
       - name: Verify build output
         run: |
-          echo "Listing build directory:"
-          ls -R ./build
+          echo "Listing .next directory:"
+          ls -R ./.next
