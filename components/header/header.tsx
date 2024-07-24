@@ -6,17 +6,22 @@ export const Header = () => {
     {
       name: 'Handling Means',
       slug: 'handling-means',
-      path: '/handling-means',
+      path: '/means',
     },
     {
       name: 'Work instructions',
       slug: 'work-instructions',
-      path: '/work-instructions',
+      path: '/instructions',
     },
     {
       name: 'Standard forms',
-      slug: 'standard-forms',
-      path: '/standard-forms',
+      slug: 'forms',
+      path: '/forms',
+    },
+    {
+      name: 'Projects',
+      slug: 'projects',
+      path: '/projects',
     },
     {
       name: 'Dashboard',
@@ -25,11 +30,11 @@ export const Header = () => {
   ];
   return (
     <header className="h-[7%]  flex items-center justify-between">
-      <div>
+      <div className="font-semibold mx-8 text-blue-950 text-3xl">
         {' '}
-        <p>Logo</p>{' '}
+        <span>Packaging Library</span>{' '}
       </div>
-      <div className="flex flex-row gap-2 font-semibold">
+      <div className="flex flex-row gap-2 ">
         {routes.map((route) => {
           return (
             <Link
