@@ -8,6 +8,28 @@ body,
   height: 100%;
 }
 
+body {
+  font-family: var(--font-poppins), sans-serif;
+  font-size: var(--font-size-base);
+  line-height: 1.6; /* Ajuste la hauteur de ligne pour améliorer la lisibilité */
+}
+
+/* Vous pouvez également ajuster les tailles des en-têtes, paragraphes, etc. */
+h1 {
+  font-size: 2rem; /* Par exemple, ajuster la taille des titres h1 */
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+h3 {
+  font-size: 1.5rem;
+}
+
+p {
+  font-size: 1.5rem; /* Taille de police pour les paragraphes */
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
