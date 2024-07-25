@@ -1,48 +1,48 @@
-import Link from 'next/link';
-import { UserButton } from '../auth/user-button';
+import Link from "next/link";
+import { UserButton } from "../auth/user-button";
 
 export const Header = () => {
   const routes = [
     {
-      name: 'Handling Means',
-      slug: 'handling-means',
-      path: '/means',
+      name: "Means",
+      slug: "handling-means",
+      path: "/means",
     },
     {
-      name: 'Work instructions',
-      slug: 'work-instructions',
-      path: '/instructions',
+      name: "instructions",
+      slug: "work-instructions",
+      path: "/instructions",
     },
     {
-      name: 'Standard forms',
-      slug: 'forms',
-      path: '/forms',
+      name: "forms",
+      slug: "forms",
+      path: "/forms",
     },
     {
-      name: 'Projects',
-      slug: 'projects',
-      path: '/projects',
+      name: "Projects",
+      slug: "projects",
+      path: "/projects",
     },
     {
-      name: 'Dashboard',
-      path: '/dashboard',
+      name: "Dashboard",
+      path: "/dashboard",
     },
   ];
   return (
-    <header className="h-[7%]  flex items-center justify-between">
-      <div className="font-semibold mx-8 text-blue-950 text-3xl">
-        {' '}
-        <span>Packaging Library</span>{' '}
+    <header className="h-[10%]  flex items-center justify-between">
+      <div className="font-semibold mx-8 text-blue-950 text-2xl">
+        {" "}
+        <span>Packaging Library</span>{" "}
       </div>
-      <div className="flex flex-row gap-2 ">
+      <div className="flex flex-row gap-1 ">
         {routes.map((route) => {
           return (
             <Link
-              className="mx-8 text capitalize"
+              className="mx-8 text capitalize "
               key={route.name}
               href={route.path}
             >
-              <h3>{route.name}</h3>
+              <h4>{route.name}</h4>
             </Link>
           );
         })}
