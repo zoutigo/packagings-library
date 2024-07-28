@@ -1,5 +1,5 @@
 -- CreateTable
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
     `id` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NULL,
     `email` VARCHAR(191) NULL,
@@ -11,7 +11,7 @@ CREATE TABLE `users` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `accounts` (
+CREATE TABLE IF NOT EXISTS `accounts` (
     `id` VARCHAR(191) NOT NULL,
     `user_id` VARCHAR(191) NOT NULL,
     `type` VARCHAR(191) NOT NULL,
