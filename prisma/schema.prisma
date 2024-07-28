@@ -64,3 +64,87 @@ enum UserRole {
   ADMIN
   USER
 }
+
+model Project {
+  id    String    @id @default(cuid())
+  name  String
+  code  Int?
+  sop   DateTime? @unique
+  eol   DateTime?
+  parts Part[]
+
+  @@map("projects")
+}
+
+model Image {
+  id           String         @id @default(cuid())
+  url          String
+  HandlingUnit HandlingUnit[]
+
+  @@map("images")
+}
+
+model Part {
+  id            String         @id @default(cuid())
+  imgUrl        String
+  name          String
+  project       String
+  length        Int
+  width         Int
+  heigth        Int
+  weigth        Int?
+  handlingUnits HandlingUnit[]
+  Project       Project?       @relation(fields: [projectId], references: [id])
+  projectId     String?
+
+  @@map("parts")
+}
+
+model HandlingUnit {
+  id          String  @id @default(cuid())
+  name        String
+  description String
+  pictures    Image[]
+  length      Int
+  width       Int
+  heigth      Int
+  density     Int
+  process     String
+  supplier    String
+  part        Part?   @relation(fields: [partId], references: [id])
+  partId      String?
+  plant       Plant   @relation(fields: [plantId], references: [id])
+  plantId     String
+
+  @@map("hanlingUnits")
+}
+
+model HandlingUnitType {
+  id          String @id @default(cuid())
+  name        String
+  description String
+  imgUrl      String
+
+  @@map("hanlingUnitTypes")
+}
+
+model Country {
+  id    String  @id @default(cuid())
+  name  String
+  code  String
+  slug  String  @unique
+  Plant Plant[]
+
+  @@map("countries")
+}
+
+model Plant {
+  id           String         @id @default(cuid())
+  name         String
+  address      String
+  country      Country        @relation(fields: [countryId], references: [id])
+  countryId    String
+  HandlingUnit HandlingUnit[]
+
+  @@map("plants")
+}
