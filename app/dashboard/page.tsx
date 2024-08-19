@@ -2,6 +2,7 @@ import React from 'react';
 import { DashboardCard } from './_components/dashboard-card';
 import { Folder, MessageCircle, Newspaper, User } from 'lucide-react';
 import { PostsTable } from './_components/postsTable';
+import { AnalyticsChart } from './_components/analytic-charts';
 
 type Props = {};
 
@@ -38,7 +39,8 @@ const DashboardPage = (props: Props) => {
           />
         </div>
       </div>
-      <PostsTable title="Latest Posts" limit={3} />
+      <AnalyticsChart />
+      <PostsTable title="Latest Posts" limit={5} />
     </>
   );
 };
